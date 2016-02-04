@@ -1,10 +1,14 @@
 #!/bin/bash
 ##############################################################################
 # Script that can be placed in /opt and used for renewing certificates from
-# Let's Encrypt (https://letsencrypt.org/). Targeted towards CentOS 7 and
-# Apache, but can easily be modified to use other web server and init method
+# Let's Encrypt (https://letsencrypt.org/). Using webroot method.
+# The machine needs to listen to port 80 so that let's encrypt callback can
+# access the ACME challenge.
 #
-# Needs root. Example crontab entry (run every third day):
+# Targeted towards CentOS 7 and Apache, but can easily be modified to use
+# other web server and init method.
+#
+# Needs to run as root. Example crontab entry (run every third day):
 # 2 15 */3 * * /opt/le-renew-certificates.sh
 ##############################################################################
 
@@ -12,6 +16,11 @@ WEB_SERVICE='httpd.service'
 CONFIG_FILE='/opt/le-cybermoose.org-webroot.ini'
 LE_PATH='/opt/letsencrypt'
 EXP_LIMIT=30;
+
+if [ $EUID -ne 0 ]; then
+  echo "[ERROR] This script must be run as root." 1>&2
+  exit 1;
+fi
 
 if [ ! -f ${CONFIG_FILE} ]; then
   echo "[ERROR] config file does not exist: $CONFIG_FILE"

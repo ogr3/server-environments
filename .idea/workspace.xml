@@ -30,8 +30,8 @@
       <file leaf-file-name="le-renew-certificates.sh" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/centos7/opt/le-renew-certificates.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.42898">
-              <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.171592">
+              <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -754,12 +754,12 @@
       <created>1454566549413</created>
       <option name="number" value="Default" />
       <updated>1454566549413</updated>
-      <workItem from="1454566550754" duration="1602000" />
+      <workItem from="1454566550754" duration="1980000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1602000" />
+    <option name="totallyTimeSpent" value="1980000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1204" extended-state="6" />
@@ -799,8 +799,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/centos7/opt/le-renew-certificates.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42898">
-          <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.171592">
+          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
           <folding />
         </state>
       </provider>
