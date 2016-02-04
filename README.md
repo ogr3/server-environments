@@ -1,5 +1,6 @@
 Server Environments
 ===================
+Bits and pieces for setting up environments. First off is letsencrypt certs with auto renewal on CentOS 7.
 
 Certificates from Let's encrypt are installed using.
 
