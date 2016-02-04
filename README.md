@@ -1,16 +1,16 @@
 Server Environments
 ===================
-Bits and pieces for setting up environments. First off is letsencrypt certs with auto renewal on CentOS 7.
+Bits and pieces for setting up environments. First off is Let's Encrypt certs with auto renewal on CentOS 7.
 
-Certificates from Let's encrypt are installed using.
+Certificates from Let's Encrypt are installed using.
 
 ```
 sudo mkdir /opt/letsencrypt
 sudo chown <user>:<user> letsencrypt
 git clone https://github.com/letsencrypt/letsencrypt /opt/letsencrypt
-sudo servicectl httpd.service stop
+sudo servicectl stop httpd.service
 /opt/letsencrypt/letsencrypt-auto certonly --standalone
-sudo servicectl httpd.service start
+sudo servicectl start httpd.service
 ```
 
 For auto renewal of certificate, place the files `centos7/opt/le-renew-certificates.sh` and `centos7/opt/le-cybermoose.org-webroot.ini`
