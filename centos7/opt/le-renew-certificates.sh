@@ -23,6 +23,7 @@ CERT_FILE="/etc/letsencrypt/live/$DOMAIN/fullchain.pem"
 
 if [ ! -f ${CERT_FILE} ]; then
   echo "[ERROR] certificate file not found for domain $DOMAIN."
+  exit 1;
 fi
 
 DATE_NOW=$(date -d "now" +%s)
