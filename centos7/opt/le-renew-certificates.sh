@@ -18,7 +18,7 @@ if [ ! -f ${CONFIG_FILE} ]; then
   exit 1;
 fi
 
-DOMAIN=$(grep "^\s*domains" ${CONFIG_FILE} | sed "s/^\s*domains\s*=\s*//" | sed 's/(\s*)\|,.*$//')
+DOMAIN=$(grep "^\s*domains" ${CONFIG_FILE} | sed "s/^\s*domains\s*=\s*//" | sed "s/(\s*)\|,.*$//")
 CERT_FILE="/etc/letsencrypt/live/$DOMAIN/fullchain.pem"
 
 if [ ! -f ${CERT_FILE} ]; then
