@@ -14,7 +14,7 @@
 
 WEB_SERVICE='httpd.service'
 CONFIG_FILE='/opt/le-cybermoose.org-webroot.ini'
-LE_PATH='/opt/letsencrypt'
+LE_PATH='/opt/certbot'
 EXP_LIMIT=30;
 
 if [ $EUID -ne 0 ]; then
@@ -46,7 +46,7 @@ if [ "$EXP_DAYS" -gt "$EXP_LIMIT" ] ; then
   exit 0;
 else
   echo "The certificate for $DOMAIN is about to expire soon. Starting webroot renewal script..."
-  ${LE_PATH}/letsencrypt-auto certonly --renew-by-default --config ${CONFIG_FILE}
+  ${LE_PATH}/certbot-auto certonly --renew-by-default --config ${CONFIG_FILE}
   echo "Reloading $WEB_SERVICE"
   systemctl reload ${WEB_SERVICE}
   echo "Renewal process finished for domain $DOMAIN"
