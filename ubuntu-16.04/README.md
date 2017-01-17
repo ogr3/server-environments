@@ -5,6 +5,8 @@ Ubuntu 16.04
 sudo apt-get update
 sudo apt-get install nginx letsencrypt bc
 sudo openssl dhparam -out /etc/nginx/ssl/dhparams.pem 2048
+sudo mkdir -p /var/www/ec2.muppfarmen.se/html
+sudo chown -R $USER:$USER /var/www/ec2.muppfarmen.se/html
 ```
 
 Put the files in this repo in their places and create a symlink in /etc/nginx/sites-enabled to the new host.
