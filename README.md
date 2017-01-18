@@ -5,11 +5,10 @@ Bits and pieces for setting up environments. First off is Let's Encrypt certs wi
 Certificates from Let's Encrypt are installed using.
 
 ```
-sudo mkdir /opt/certbot
-sudo chown $USER:$USER /opt/certbot
-git clone https://github.com/certbot/certbot.git /opt/certbot
+sudo yum install epel-release
+sudo yum install python2-certbot-apache
 sudo servicectl stop httpd.service
-/opt/certbot/certbot-auto certonly --standalone
+sudo certbot certonly --standalone
 sudo servicectl start httpd.service
 ```
 
@@ -21,5 +20,5 @@ Run `le-renew-certificates.sh` as root in a cron job every third day or so to au
 Example crontab entry:
 
 ```
-2 15 */3 * * /opt/le-renew-certificates.sh
+2 3,15 */3 * * /opt/le-renew-certificates.sh
 ``` 
