@@ -1,30 +1,61 @@
 server {
-	listen 80;
-	server_name ec2.muppfarmen.se;
-	return 301 https://$host$request_uri;
+  listen 80;
+  server_name ec2.muppfarmen.se;
+
+  location ~ /.well-known {
+    allow all;
+    root /var/wwww/letsencrypt;
+  }
+
+  location / {
+    return 301 https://$host$request_uri;
+  }
 }
 
 server {
-	listen 443 ssl;
-	server_name ec2.muppfarmen.se;
+  listen 443 ssl;
+  server_name ec2.muppfarmen.se;
 
-	ssl on;
-        ssl_certificate /etc/letsencrypt/live/ec2.muppfarmen.se/fullchain.pem;
-        ssl_certificate_key /etc/letsencrypt/live/ec2.muppfarmen.se/privkey.pem;
-	ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-        ssl_prefer_server_ciphers on;
-        ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
-	ssl_dhparam /etc/nginx/dhparams.pem;
+  ssl on;
+  ssl_certificate /etc/letsencrypt/live/ec2.muppfarmen.se/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/ec2.muppfarmen.se/privkey.pem;
 
-	root /var/www/ec2.muppfarmen.se/html;
-	index index.html index.htm;
+  ########################################################################
+  # from https://cipherli.st/                                            #
+  # and https://raymii.org/s/tutorials/Strong_SSL_Security_On_nginx.html #
+  ########################################################################
 
-	location / {
-		# First attempt to serve request as file, then
-		# as directory, then fall back to displaying a 404.
-		try_files $uri $uri/ =404;
-		# Uncomment to enable naxsi on this location
-		# include /etc/nginx/naxsi.rules
-	}
+  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+  ssl_prefer_server_ciphers on;
+  ssl_ciphers "EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH";
+  ssl_ecdh_curve secp384r1;
+  ssl_session_cache shared:SSL:10m;
+  ssl_session_tickets off;
+  ssl_stapling on;
+  ssl_stapling_verify on;
+  resolver 8.8.8.8 8.8.4.4 valid=300s;
+  resolver_timeout 5s;
+  # Disable preloading HSTS for now.  You can use the commented out header line that includes
+  # the "preload" directive if you understand the implications.
+  #add_header Strict-Transport-Security "max-age=63072000; includeSubdomains; preload";
+  add_header Strict-Transport-Security "max-age=63072000; includeSubdomains";
+  add_header X-Frame-Options DENY;
+  add_header X-Content-Type-Options nosniff;
+
+  ##################################
+  # END https://cipherli.st/ BLOCK #
+  ##################################
+
+  ssl_dhparam /etc/nginx/dhparams.pem;
+
+  root /var/www/ec2.muppfarmen.se/html;
+  index index.html index.htm;
+
+  location / {
+    # First attempt to serve request as file, then
+    # as directory, then fall back to displaying a 404.
+    try_files $uri $uri/ =404;
+    # Uncomment to enable naxsi on this location
+    # include /etc/nginx/naxsi.rules
+  }
 }
-

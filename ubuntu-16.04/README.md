@@ -6,6 +6,7 @@ sudo apt-get update
 sudo apt-get install nginx letsencrypt bc
 sudo openssl dhparam -out /etc/nginx/ssl/dhparams.pem 2048
 sudo mkdir -p /var/www/ec2.muppfarmen.se/html
+sudo mkdir -p /var/www/letsencrypt
 sudo chown -R $USER:$USER /var/www/ec2.muppfarmen.se/html
 ```
 
