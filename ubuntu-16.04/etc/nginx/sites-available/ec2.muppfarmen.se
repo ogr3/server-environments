@@ -16,6 +16,9 @@ server {
   listen 443 ssl;
   server_name ec2.muppfarmen.se;
 
+  root /var/www/ec2.muppfarmen.se/html;
+  index index.html index.htm;
+
   ssl on;
   ssl_certificate /etc/letsencrypt/live/ec2.muppfarmen.se/fullchain.pem;
   ssl_certificate_key /etc/letsencrypt/live/ec2.muppfarmen.se/privkey.pem;
@@ -47,15 +50,4 @@ server {
   ##################################
 
   ssl_dhparam /etc/nginx/dhparams.pem;
-
-  root /var/www/ec2.muppfarmen.se/html;
-  index index.html index.htm;
-
-  location / {
-    # First attempt to serve request as file, then
-    # as directory, then fall back to displaying a 404.
-    try_files $uri $uri/ =404;
-    # Uncomment to enable naxsi on this location
-    # include /etc/nginx/naxsi.rules
-  }
 }
