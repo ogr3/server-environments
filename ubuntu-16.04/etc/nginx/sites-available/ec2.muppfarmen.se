@@ -4,7 +4,7 @@ server {
 
   location ~ /.well-known {
     allow all;
-    root /var/wwww/letsencrypt;
+    root /var/www/letsencrypt;
   }
 
   location / {

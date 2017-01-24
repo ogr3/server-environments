@@ -27,7 +27,7 @@ if [ "$EXP_DAYS" -gt "$EXP_LIMIT" ] ; then
 	exit 0;
 else
 	echo "The certificate for $DOMAIN is about to expire soon. Starting webroot renewal script..."
-        letsencrypt certonly --renew-by-default --config $CONFIG_FILE
+    letsencrypt certonly --renew-by-default --config $CONFIG_FILE
 	echo "Reloading $WEB_SERVICE"
 	/usr/sbin/service $WEB_SERVICE reload
 	echo "Renewal process finished for domain $DOMAIN"
