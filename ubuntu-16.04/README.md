@@ -28,3 +28,8 @@ sudo dpkg --add-architecture i386
 sudo apt-get update
 sudo apt-get install steamcmd
 ```
+
+Run steamcd to install the server of your choice.
+```sh
+sudo apt-get install libtinfo5:i386 libncurses5:i386
+```
