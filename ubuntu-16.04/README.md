@@ -21,15 +21,4 @@ When the letsencrypt stuff works add the following line to crontab:
 ```sh
 7 3,15 * * * /opt/le-renew-certificates.sh
 ```
-Install Team Fortress 2 server
-==============================
-```sh
-sudo dpkg --add-architecture i386
-sudo apt-get update
-sudo apt-get install steamcmd
-```
 
-Run steamcd to install the server of your choice.
-```sh
-sudo apt-get install libtinfo5:i386 libncurses5:i386 libcurl3-gnutls:i386
-```
